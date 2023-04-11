@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml"
+  xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+  <meta charset="utf-8"> <!-- utf-8 works for most cases -->
+  <meta name="viewport" content="width=device-width"> <!-- Forcing initial-scale shouldn't be necessary -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- Use the latest (edge) version of IE rendering engine -->
+  <meta name="x-apple-disable-message-reformatting"> <!-- Disable auto-scale in iOS 10 Mail entirely -->
+  <title>Scratch-off Effect Email Code Example | Julia Czarnecki | Design | Code | Digital</title>
+  <!-- The title tag shows in email notifications, like Android 4.4. -->
+
+  <!-- Web Font / @font-face : BEGIN -->
+  <!-- NOTE: If web fonts are not required, lines 10 - 27 can be safely removed. -->
+
+  <!-- Desktop Outlook chokes on web font references and defaults to Times New Roman, so we force a safe fallback font. -->
+  <!--[if mso]>
+        <style>
+            * {
+                font-family: Arial, sans-serif !important;
+            }
+        </style>
+    <![endif]-->
+
+  <!-- All other clients get the webfont reference; some will render the font and others will silently fail to the fallbacks. More on that here: http://stylecampaign.com/blog/2015/02/webfont-support-in-email/ -->
+  <!--[if !mso]><!-->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:300,500" rel="stylesheet">
+  <!--<![endif]-->
+
+  <!-- Web Font / @font-face : END -->
+
+  <!-- CSS Reset -->
+  <style>
+    .ExternalClass {
+      width: 100%;
+    }
+
+    .ExternalClass,
+    .ExternalClass p,
+    .ExternalClass span,
+    .ExternalClass font,
+    .ExternalClass td,
+    .ExternalClass div {
+      line-height: 100%;
+    }
+
+    /* What it does: Remove spaces around the email design added by some email clients. */
+    /* Beware: It can remove the padding / margin and add a background color to the compose a reply window. */
+    body {
+      height: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+    }
+
+    /* What it does: Stops email clients resizing small text. */
+    body,
+    table,
+    td,
+    a {
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+      font-size: 0;
+    }
+
+    /* What it does: Uses a better rendering method when resizing images in IE. */
+    img {
+      -ms-interpolation-mode: bicubic;
+    }
+
+    /* What it does: Centers email on Android 4.4 */
+    div[style*="margin: 16px 0"] {
+      margin: 0 !important;
+    }
+
+    /* What it does: Stops Outlook from adding extra spacing to tables. */
+    table,
+    td {
+      mso-table-lspace: 0pt;
+      mso-table-rspace: 0pt;
+    }
+
+    /* What it does: Fixes webkit padding issue. Fix for Yahoo mail table alignment bug. Applies table-layout to the first 2 tables then removes for anything nested deeper. */
+    table {
+      border-spacing: 0 !important;
+      border-collapse: collapse !important;
+      table-layout: fixed !important;
+      margin: 0 auto !important;
+    }
+
+    table table table {
+      table-layout: auto;
+    }
+
+    p,
+    div {
+      margin: 0;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    img {
+      border: 0;
+      height: auto;
+      line-height: 100%;
+      outline: none;
+      text-decoration: none;
+    }
+
+    /* What it does: A work-around for email clients meddling in triggered links. */
+    *[x-apple-data-detectors],
+    /* iOS */
+    .x-gmail-data-detectors,
+    /* Gmail */
+    .x-gmail-data-detectors *,
+    .aBn {
+      border-bottom: 0 !important;
+      cursor: default !important;
+      color: inherit !important;
+      text-decoration: none !important;
+      font-size: inherit !important;
+      font-family: inherit !important;
+      font-weight: inherit !important;
+      line-height: inherit !important;
+    }
+
+    /* GMAIL BLUE LINKS */
+    u+#body a {
+      color: inherit;
+      text-decoration: none;
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+
+    /* SAMSUNG MAIL BLUE LINKS */
+    #MessageViewBody a {
+      color: inherit;
+      text-decoration: none;
+      font-size: inherit;
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+    }
+
+    /* What it does: Prevents Gmail from displaying an download button on large, non-linked images. */
+    .a6S {
+      display: none !important;
+      opacity: 0.01 !important;
+    }
+
+    /* If the above doesn't work, add a .g-img class to any image in question. */
+    img.g-img+div {
+      display: none !important;
+    }
+
+    /* What it does: Prevents underlining the button text in Windows 10 */
+    .button-link {
+      text-decoration: none !important;
+    }
+
+    /****** EDITABLE STYLES ********/
+    body,
+    #body_style {
+      background-color: #FFFFFF;
+      color: #FFF;
+    }
+
+    .email-container {
+      background-color: #FFFFFF;
+      color: #000000;
+    }
+
+    p,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    li,
+    span {
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 110% !important;
+    }
+
+    .preheader {
+      font-size: 0px;
+      line-height: 1px;
+      display: none;
+      max-height: 0px;
+      max-width: 0px;
+      opacity: 0;
+      overflow: hidden;
+      mso-hide: all;
+      color: #000000;
+    }
+
+    /*Lists*/
+    u+.body .glist {
+      margin-left: 0 !important;
+    }
+
+    /* Superscripts */
+    sup {
+      font-size: 70%;
+      line-height: 0;
+      vertical-align: 5px;
+      mso-text-raise: 30%;
+    }
+
+    /* These rules set the link and hover states, making it clear that links are, in fact, links. */
+    /* Embrace established conventions like underlines on links to keep emails accessible. */
+    a {
+      color: #B200FD;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    a:hover {
+      color: #000000 !important;
+      text-decoration: none !important;
+    }
+
+    a.button:hover {
+      color: #ffffff !important;
+      background-color: #990008 !important;
+    }
+
+    /* What it does: Removes right gutter in Gmail iOS app: https://github.com/TedGoas/Cerberus/issues/89  */
+    /* Create one of these media queries for each additional viewport size you'd like to fix */
+    /* Thanks to Eric Lepetit @ericlepetitsf) for help troubleshooting */
+    @media only screen and (min-device-width: 375px) and (max-device-width: 413px) {
+
+      /* iPhone 6 and 6+ */
+      .email-container {
+        min-width: 375px !important;
+      }
+    }
+  </style>
+
+
+  <style>
+    /*Progressive Enhancements*/
+    /* What it does: Hover styles for buttons */
+    .button-td,
+    .button-a {
+      transition: all 100ms ease-in;
+    }
+
+    .button-td:hover,
+    .button-a:hover {
+      background: #990008 !important;
+      border-color: #990008 !important;
+      border-radius: 4px;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 480px) {
+
+      /* What it does: Forces elements to resize to the full width of their container. Useful for resizing images beyond their max-width. */
+      .fluid {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+
+      /* What it does: Forces table cells into full-width rows. */
+      .stack-column,
+      .stack-column-center {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        /*direction: ltr !important;*/
+      }
+
+      /* And center justify these ones. */
+      .stack-column-center {
+        text-align: center !important;
+      }
+
+      /* What it does: Generic utility class for centering. Useful for images, buttons, and nested tables. */
+      .center-on-narrow {
+        text-align: center !important;
+        display: block !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        float: none !important;
+      }
+
+      table.center-on-narrow {
+        display: inline-block !important;
+      }
+
+
+      /* For Lists */
+      u+.body .glist {
+        margin-left: 25px !important;
+      }
+
+    }
+  </style>
+
+  <style type="text/css">
+    /* Scratch-Off Styles via Email on Acid post: https://www.emailonacid.com/blog/article/email-development/scratch-off-email/ */
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+      .touch {
+        display: block !important;
+        mso-hide: all !important;
+      }
+
+      .unveil {
+        display: none
+      }
+
+      #touchunveil:checked~* .unveil {
+        display: block !important;
+      }
+
+      #touchunveil:checked~* .touch {
+        display: none !important;
+      }
+    }
+
+    /* Target Outlook, Office 365*/
+    [class~="x_unveil"] {
+      display: block !important;
+    }
+
+    [class~="x_touch"] {
+      display: none !important;
+    }
+  </style>
+
+  <!--[if mso]><!-->
+  <input type="radio" name="touchunveil" id="touchunveil"
+    style="mso-hide:all;display:none!important;height:0px;max-height:0px;overflow:hidden;font-size:0;margin-left:-10000px;">
+  <!--<![endif]-->
+
+  <!-- What it does: Makes background images in 72ppi Outlook render at correct size. -->
+  <!--[if gte mso 9]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+</head>
+
+<body width="100%" bgcolor="#FFFFFF" style="margin: 0; mso-line-height-rule: exactly;">
+  <center style="width: 100%; background: #FFFFFF; text-align: left;">
+
+    <!-- Visually Hidden Preheader Text : BEGIN -->
+    <div class="preheader"
+      style="display:none;font-size:1px;line-height:1px;max-height:0px;max-width:0px;opacity:0;overflow:hidden;mso-hide:all;font-family: sans-serif;">
+      Scratch-off Effect Email Code</div>
+    <!-- Visually Hidden Preheader Text : END -->
+
+    <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" align="center">
+            <tr>
+            <td align="center"  class="email-container">
+            <![endif]-->
+    <div style="max-width: 600px; margin: auto;" class="email-container">
+      <!--[if mso]>
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" align="center">
+            <tr>
+            <td>
+            <![endif]-->
+
+      <!-- Email Body : BEGIN -->
+      <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+        style="max-width: 600px;" class="email-container">
+        <tr>
+          <td bgcolor="#FFFFFF">
+            <table role="presentation" cellspacing="0" cellpadding="0" border="0" align="center" width="100%"
+              style="max-width: 600px;">
+
+              <!-- HEADER : BEGIN -->
+              <tr>
+                <td align="center" valign="top">
+                  <header>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                      <tr>
+                        <td valign="middle" align="left" width="205"
+                          style="padding: 10px; text-align: left; width:205px;">
+                          <img src="https://ninjulia.github.io/email_scratchoff/images/placeholder_dark.png" width="181"
+                            height="40" alt="logo" border="0"
+                            style="width: 181px; height: 40px; font-family: sans-serif; font-size: 15px; line-height: 110%; color: #555555;">
+                        </td>
+                        <td valign="middle" align="left" style="padding: 10px; text-align: right;">
+                          <p style="margin-top:0; margin-bottom:0;"><a href="#" style="font-size:12px;">View In
+                              Browser</a></p>
+                        </td>
+                      </tr>
+                    </table>
+                  </header>
+                </td>
+              </tr>
+              <!-- HEADER : END -->
+
+              <!-- MAIN CONTENT : BEGIN -->
+              <tr>
+                <td align="center" valign="top" style="background-color:#CCCCCC;padding:1px;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+                    style="background-color:#FFFFFF">
+                    <!-- SCRATCH OFF : BEGIN -->
+                    <tr>
+                      <td style="padding:0px; margin:0px;text-align:center">
+                        <!--[if !mso]><!-->
+                        <table width="600" role="presentation" border="0" cellspacing="0" cellpadding="0" align="center"
+                          style="width:100%; max-width:600px;">
+                          <tr>
+                            <td align="center" valign="top" bgcolor="#FFFFFF">
+                              <!-- Touch to Unveil -->
+                              <table role="presentation" width="600" style="width:100%; max-width:600px;"
+                                cellpadding="0" cellspacing="0" border="0" align="center">
+                                <tr>
+                                  <td align="center" valign="top">
+                                    <!-- Main Offer Scratch Off  -->
+                                    <table class="unveil" width="100%" border="0" cellspacing="0" cellpadding="0"
+                                      style="width:100%; max-width:600px;mso-hide:all;">
+                                      <tr>
+                                        <td align="center"><a href="#"><img
+                                              src="https://ninjulia.github.io/email_scratchoff/images/scratchgif.gif"
+                                              width="100%" height="auto"
+                                              style="display:block;width:100%;max-width:600px;height:auto;"
+                                              class="fluid" alt="Winning Ticket ConnectWise and LabTech"
+                                              border="0" /></a></td>
+                                      </tr>
+                                      <tr>
+                                        <td valign="middle" align="center" bgcolor="#FFFFFF"
+                                          style="color:#000000; font-family:serif; font-size:14px; mso-line-height-rule:exactly;line-height:22px; font-weight:400; padding:16px 0px 0px 0px;">
+                                          &nbsp;</td>
+                                      </tr>
+                                    </table>
+                                    <table class="touch" width="100%" border="0" cellspacing="0" cellpadding="0"
+                                      style="mso-hide:all; display:none;">
+                                      <tr style="mso-hide:all">
+                                        <td align="center" style="mso-hide:all">
+                                          <!-- Touch to Unveil Image  -->
+                                          <label for="touchunveil"> <img class="fluid" border="0"
+                                              src="https://ninjulia.github.io/email_scratchoff/initial.png" width="100%"
+                                              style="width:100%;max-width:600px; display:block; mso-hide:all; height: auto;"
+                                              alt="Power Up Your Profits with ConnectWise and Labtech - Click to see if you've won">
+                                          </label>
+                                        </td>
+                                      </tr>
+                                      <tr>
+                                        <td valign="middle" align="center" bgcolor="#FFFFFF"
+                                          style="color:#555555; font-family:serif; font-size:10px; mso-line-height-rule:exactly;line-height:20px; font-weight:400; padding:16px 0px 0px 0px;">
+                                          <i style="text-align:center">Click above to Reveal Your Offer</i></td>
+                                      </tr>
+                                    </table>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- // End Touch to Unveil -->
+                            </td>
+                          </tr>
+                        </table>
+                        <!--<![endif]-->
+                        <!--[if gte mso 9]>
+                      <center>
+                        <table border="0" width="600" align="center" valign="top" cellpadding="0" cellspacing="0" bgcolor="#ffffff">
+                          <tr>
+                            <td align="center" valign="top">
+                              <table border="0" width="600" align="center" valign="top" cellpadding="0" cellspacing="0" bgcolor="#ffffff" style="padding:0px 0px 0px 0px; width:600px;">
+                                <tr>
+                                  <td align="center" valign="top"><img src="https://ninjulia.github.io/email_scratchoff/images/revealed.png"  width="100%" style="width:100%;max-width:600px; display:block; mso-hide:all; height: auto;" alt="" class="fluid"/></td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </center>
+                      <![endif]-->
+                      </td>
+                    </tr>
+                    <!-- SCRATCH OFF : END -->
+
+                    <!-- MAIN TEXT : BEGIN -->
+                    <tr>
+                      <td bgcolor="#ffffff" style="background-color:#FFFFFF">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                          <tr>
+                            <td style="padding: 40px 40px 20px 40px; text-align: left;">
+                              <h1
+                                style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 26px; color: #4aa943; font-weight: bold; text-transform:uppercase">
+                                Eos sumo brute feugiat id iriure</h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="padding: 0px 40px 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: left; font-weight:normal;">
+                              <p style="margin: 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut ad minim veniam, quis
+                                nostrud exercitation ullamco laborisc nisi ut aliquip ex ea commodo consequat.</p>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="padding: 0px 40px 20px 40px; text-align: left;">
+                              <h1
+                                style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 26px; color: #4aa943; font-weight: bold; text-transform:uppercase">
+                                minim veniam, quis nostrud exercitation</h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td
+                              style="padding: 0px 40px 40px 40px; font-family: sans-serif; font-size: 15px; line-height: 20px; color: #555555; text-align: left; font-weight:normal;">
+                              <p style="margin: 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+                                eiusmod tempor incididunt ut labore et dolore magna. Ut enim ad minim veniam, quis
+                                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <!-- MAIN TEXT : END -->
+                    <!-- CTA : BEGIN -->
+                    <tr>
+                      <td bgcolor="#4aa943" style="background-color:#4aa943">
+                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                          <tr>
+                            <td style="padding: 40px 40px 20px 40px; text-align: center;">
+                              <h1
+                                style="margin: 0; font-family: 'Montserrat', sans-serif; font-size: 20px; line-height: 24px; color: #ffffff; font-weight: bold;">
+                                When ConnectWise Meets LabTech,<br />Your Business Wins</h1>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="middle" align="center" style="text-align: center; padding: 0px 20px 40px 20px;">
+
+                              <!-- Button : BEGIN -->
+                              <table role="presentation" align="center" cellspacing="0" cellpadding="0" border="0"
+                                class="center-on-narrow">
+                                <tr>
+                                  <td valign="top" align="center" class="button-td">
+                                    <div>
+                                      <!--[if mso]>
+                                          <v:roundrect xmlns_v="urn:schemas-microsoft-com:vml" xmlns_w="urn:schemas-microsoft-com:office:word" href="#" style="height:40px;v-text-anchor:middle;width:200px;" arcsize="10%" strokecolor="#b80008" fillcolor="#b80008">
+                                          <w:anchorlock/>
+                                          <center style="color:#ffffff;font-family:sans-serif;font-size:20px;font-weight:bold;line-height:20px;text-align:center;text-decoration:none;">Click to Win</center>
+                                          </v:roundrect>
+                                          <![endif]-->
+                                      <a href="#"
+                                        style="background-color:#b80008;border:1px solid #b80008; border-radius:4px;color:#FFFFFF;display:inline-block;font-family:sans-serif;font-size:20px;font-weight:bold;line-height:40px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;mso-hide:all;"
+                                        class="button-a button-link">Click to Win</a>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- Button : END -->
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                    <!-- CTA : END -->
+                  </table>
+                </td>
+              </tr>
+              <!-- MAIN CONTENT : END -->
+              <!-- FOOTER : BEGIN -->
+              <tr>
+                <td bgcolor="#FFFFFF" style="background-color:#FFFFFF;">
+                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                    <tr>
+                      <td
+                        style="padding: 40px 40px 10px 40px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #666666; text-align: center; font-weight:normal;">
+                        <address style="font-size: 12px; font-style: normal; font-weight: 400;color:#666666;">
+                          <a href="#" style="font-size: 12px; color: #666666!important; text-decoration: none;">1234
+                            Main Street, Anywhere, US 56789</a>
+                        </address>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="padding: 0px 40px 10px 40px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #666666; text-align: center; font-weight:normal;">
+                        <p style="margin: 0;"><a href="#" style="font-size: 12px;">Preferences</a> | <a href="#"
+                            style="font-size: 12px;">Browser</a> | <a href="#" style="font-size: 12px;">Forward</a> | <a
+                            href="#" style="font-size: 12px;">Unsubscribe</a></p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="padding: 0px 40px 10px 40px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #666666; text-align: center; font-weight:normal;">
+                        <p style="margin: 0;">Copyright &copy; 2015-2021</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td
+                        style="padding: 20px; font-family: sans-serif; font-size: 12px; line-height: 18px; color: #666666; text-align: left; font-weight:normal;">
+                        <p style="margin: 0;">Coded with help from Email on Acid <a
+                            href="https://www.emailonacid.com/blog/article/email-development/scratch-off-email/"
+                            style="font-size: 12px;" target="_blank" title="Email on Acid Scratch Off tutorial">Scratch
+                            Off Tutorial.</a> Email coded by Julia Czarnecki with a lot of help from <a
+                            href="https://litmus.com/" style="font-size: 12px;" target="_blank"
+                            title="Litmus email testing">Litmus</a> and <a href="https://www.emailonacid.com"
+                            style="font-size:12px;" target="_blank" title="Email on Acid testing">Email on Acid.</a> Any
+                          and all copyrighted material is property of the copyright owners. Placeholder logo image
+                          provided by <a href="https://placeholder.com/logos/" style="font-size: 12px;"
+                            target="_blank">placeholder.com</a>. Placeholder images provided by <a
+                            href="https://placeimg.com/" style="font-size: 12px;" target="_blank">placeimg.com</a> both
+                          are used under Creative Commons licensing <a href="https://creativecommons.org/"
+                            style="font-size: 12px;" target="_blank">creativecommons.org</a></p>
+                      </td>
+                    </tr>
+
+                  </table>
+                </td>
+              </tr>
+              <!-- FOOTER : END -->
+
+            </table>
+          </td>
+        </tr>
+      </table>
+      <!-- Email Body : END -->
+
+      <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+    </div>
+    <!--[if mso]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+  </center>
+</body>
+
+</html>
