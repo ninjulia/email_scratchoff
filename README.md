@@ -4,7 +4,7 @@ Starter file for responsive email with scratch-off / click-to-reveal effects. Bu
 
 Intended result is to mimic the effect of a scratch off ticket on click. Fall back support is to show full revealed image on click. Support is for email clients that support the :checked selector as per Campaign Monitor support is as follows: https://www.campaignmonitor.com/css/selectors/checked/
 
-The email showcased here was coded from scratch utilizing my email boilerplate framework (developed from Email on Acid and Litmus.com samples as a starting point). Email on Acid Tests passing in 44 popular mobile, web, and desktop email clients/devices as of August, 2021. All copyrights and trademarks remain property of their respective owners.
+The email showcased here was coded from scratch utilizing my email boilerplate framework (developed from Email on Acid and Litmus.com samples as a starting point). Email on Acid Tests passing in 44 popular mobile, web, and desktop email clients/devices as of August, 2021. Design was based on an email campaign sent by an IT Software-as-a-Service company. All copyrights and trademarks remain property of their respective owners.
 
 ## Expected Results
 
@@ -16,11 +16,11 @@ _On Email Clients that Support :checked selector (iOS, Apple Mail, Thunderbird, 
 
 _On Email Clients that **DO NOT** Support :checked selector, but **DO** support animated GIF (Majority of email clients)_
 
-- View animated **HERO IMAGE**
+- View animated **HERO IMAGE** only
 
 _On Email Clients that **DO NOT** Support :checked selector nor animated GIFs (Outlook 2007-2017)_
 
-- View a static **HERO IMAGE**
+- View a static **HERO IMAGE** (optional link to landing page with scratch-off effect)
 
 _ALL CLIENTS_
 
@@ -52,7 +52,7 @@ _ALL CLIENTS_
 
 ## Screenshot
 
-![screenshot](screenshot.png?raw=true)
+![screenshot](screenshot.PNG?raw=true)
 
 ## Links
 
